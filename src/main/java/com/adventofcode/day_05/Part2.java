@@ -52,13 +52,13 @@ public class Part2 {
 
   private @NotNull List<List<Mapper>> getMappers(List<String> lines) {
 
-    List<List<Mapper>> mappers = new ArrayList<>();
-    int mappersListIdx = -1;
+    List<List<Mapper>> maps = new ArrayList<>();
+    int mapIdx = -1;
 
     for (String line : lines) {
       if (line.isEmpty()) {
-        mappers.add(new ArrayList<>());
-        mappersListIdx++;
+        maps.add(new ArrayList<>());
+        mapIdx++;
       } else {
         if(!Character.isDigit(line.charAt(0))) {
           continue;
@@ -68,7 +68,7 @@ public class Part2 {
         var dstStart = Long.parseLong(tokens.get(0));
         var srcStart = Long.parseLong(tokens.get(1));
         var length = Long.parseLong(tokens.get(2));
-        mappers.get(mappersListIdx).add(new Mapper(
+        maps.get(mapIdx).add(new Mapper(
           srcStart,
           srcStart + length,
           dstStart,
@@ -77,7 +77,7 @@ public class Part2 {
       }
     }
 
-    return mappers;
+    return maps;
   }
 
   private List<Range> map(List<Range> rangeCollection, List<Mapper> mappersCollection) {
